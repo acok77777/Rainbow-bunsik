@@ -2,57 +2,94 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>무지개 분식 | 분식 식당 운영 게임</title>
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=10">
 </head>
 <body>
-<div class="game">
-<header>
-  <div class="brand"><span>🌈</span><div><h1 id="shopName">무지개 분식</h1><b id="level">Lv.1 작은 분식집</b></div></div>
-  <div class="money">🪙 <span id="money">0</span>원</div>
-  <div class="buttons">
-    <button id="recipe">📖 레시피북</button>
-    <button id="shop">🛒 상점</button>
-    <button id="rename">✏️ 가게 이름</button>
-  </div>
-</header>
-<div class="progressBox">
-  <div><b id="next">다음 레벨까지 30,000원</b><span id="progressText">0 / 30,000원</span></div>
-  <div class="progress"><i id="bar"></i></div>
-</div>
-<section class="customers" id="customers"></section>
-<main class="kitchen">
-  <div class="stations">
-    <div class="station"><h3>🍲 떡볶이 냄비</h3><div class="pot">🍲</div><div class="inside" id="potText">재료를 넣어주세요</div></div>
-    <div class="station"><h3>🧀 로제 냄비</h3><div class="pot">🍲</div><div class="inside" id="roseText">재료를 넣어주세요</div></div>
-    <div class="station"><h3>🍤 튀김기</h3><div class="fryer">🛢️</div><div class="inside" id="fryerText">튀김 메뉴를 선택하세요</div></div>
-  </div>
-  <div class="ingredients">
-    <h3>🥣 재료통 — 필요한 재료를 클릭하세요</h3>
-    <div class="grid">
-      <button data-ing="떡">🥣<small>떡</small></button>
-      <button data-ing="물">💧<small>물</small></button>
-      <button data-ing="고추장">🌶️<small>고추장</small></button>
-      <button data-ing="고춧가루">🔴<small>고춧가루</small></button>
-      <button data-ing="설탕">🍬<small>설탕</small></button>
-      <button data-ing="생크림">🥛<small>생크림</small></button>
+<div class="game-shell">
+  <div class="awning"></div>
+  <header class="topbar">
+    <div class="logo"><span>👩🏻‍🍳</span><strong>🌈 무지개 분식</strong></div>
+    <div class="money">🪙 보유금액 <b id="money">0</b>원</div>
+    <button id="recipe" class="recipeBtn">📕 레시피북</button>
+    <button id="pause" class="pauseBtn">Ⅱ</button>
+  </header>
+
+  <div class="counter-bg">
+    <section class="orders" id="customers"></section>
+
+    <section class="menu-row">
+      <button data-menu="떡볶이"><span>🌶️</span><b>떡볶이</b><small>3,000원</small></button>
+      <button data-menu="오뎅"><span>🍢</span><b>오뎅</b><small>2,000원</small></button>
+      <button data-menu="로제떡볶이"><span>🧀</span><b>로제떡볶이</b><small>4,000원</small></button>
+      <button data-menu="김말이"><span>🥢</span><b>김말이</b><small>2,000원</small></button>
+      <button data-menu="야채튀김"><span>🥕</span><b>야채튀김</b><small>2,500원</small></button>
+      <button data-menu="고구마튀김"><span>🍠</span><b>고구마튀김</b><small>2,500원</small></button>
+    </section>
+
+    <main class="workarea">
+      <section class="kitchen">
+        <div class="station">
+          <div class="steam">♨</div><div class="pot"><div>🌶️</div></div>
+          <div class="fire">🔥 🔥 🔥</div>
+          <div class="station-label">떡볶이 냄비</div>
+          <div class="cookText" id="potText">재료를 넣어주세요</div>
+        </div>
+        <div class="station">
+          <div class="steam">♨</div><div class="pot rose"><div>🧀</div></div>
+          <div class="fire">🔥 🔥 🔥</div>
+          <div class="station-label">로제 냄비</div>
+          <div class="cookText" id="roseText">재료를 넣어주세요</div>
+        </div>
+        <div class="station">
+          <div class="fryerBox"><div class="oil">〰️〰️〰️</div><div>🥟 🥟 🥟</div></div>
+          <div class="station-label">튀김기</div>
+          <div class="cookText" id="fryerText">튀김 메뉴를 선택하세요</div>
+        </div>
+      </section>
+
+      <aside class="recipePanel">
+        <div class="recipeTitle">📕 만드는 방법</div>
+        <div class="miniRecipe"><b>🌶️ 떡볶이</b><small>떡 + 물 + 고추장 + 고춧가루 + 설탕</small></div>
+        <div class="miniRecipe"><b>🍢 오뎅</b><small>오뎅 담기 → 바로 판매</small></div>
+        <div class="miniRecipe"><b>🧀 로제떡볶이</b><small>떡 + 물 + 생크림 + 고추장 + 고춧가루 + 설탕</small></div>
+        <div class="miniRecipe"><b>🥢 김말이</b><small>튀김기에 넣었다 빼기</small></div>
+        <div class="miniRecipe"><b>🥕 야채튀김</b><small>튀김기에 넣었다 빼기</small></div>
+        <div class="miniRecipe"><b>🍠 고구마튀김</b><small>튀김기에 넣었다 빼기</small></div>
+      </aside>
+    </main>
+
+    <section class="bottomArea">
+      <div class="ingredientBox">
+        <button data-ing="떡"><span>🍚</span><small>떡</small></button>
+        <button data-ing="물"><span>💧</span><small>물</small></button>
+        <button data-ing="생크림"><span>🥛</span><small>생크림</small></button>
+        <button data-ing="고추장"><span>🫙</span><small>고추장</small></button>
+        <button data-ing="고춧가루"><span>🔴</span><small>고춧가루</small></button>
+        <button data-ing="설탕"><span>🍚</span><small>설탕</small></button>
+        <button data-fry="김말이"><span>🥢</span><small>김말이</small></button>
+        <button data-fry="야채튀김"><span>🥕</span><small>야채튀김</small></button>
+        <button data-fry="고구마튀김"><span>🍠</span><small>고구마튀김</small></button>
+      </div>
+      <div class="serveBox">
+        <div class="ready"><b>🍽️ 완성</b><span id="ready">아직 없어요</span></div>
+        <button id="odeng" class="odeng">🍢 오뎅 담기</button>
+        <button id="sell" class="sell">💰 손님에게 판매하기</button>
+      </div>
+    </section>
+
+    <div class="bottomInfo">
+      <span id="level">Lv.1 작은 분식집</span>
+      <div class="progress"><i id="bar"></i></div>
+      <span id="progressText">0 / 30,000원</span>
+      <button id="shop" class="shopBtn">🛒 상점</button>
+      <button id="rename" class="nameBtn">✏️ 가게 이름</button>
     </div>
-    <div class="fried">
-      <button data-fry="김말이">🥢 김말이<br><small>튀김기에 넣기</small></button>
-      <button data-fry="야채튀김">🥕 야채튀김<br><small>튀김기에 넣기</small></button>
-      <button data-fry="고구마튀김">🍠 고구마튀김<br><small>튀김기에 넣기</small></button>
-    </div>
-    <button id="odeng" class="odeng">🍢 오뎅 담기</button>
   </div>
-  <div class="readyRow">
-    <div class="ready"><b>🍽️ 완성된 음식</b><div id="ready">아직 없어요</div></div>
-    <button class="sell" id="sell">💰 손님에게 판매하기</button>
-  </div>
-</main>
 </div>
 <div class="modal hidden" id="modal"><div class="card" id="card"></div></div>
 <div id="toast"></div>
-<script src="script.js?v=3"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>
